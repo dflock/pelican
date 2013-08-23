@@ -10,6 +10,7 @@ Release history
 * Deprecate ``FILES_TO_COPY`` in favor of ``STATIC_PATHS`` and
   ``EXTRA_PATH_METADATA``
 * Add support for |tag| and |category| relative links.
+* Add ``last_modified_date`` to metadata
 
 3.2.1 and 3.2.2
 ===============

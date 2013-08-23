@@ -42,6 +42,7 @@ from pelican.utils import get_date, pelican_open
 METADATA_PROCESSORS = {
     'tags': lambda x, y: [Tag(tag, y) for tag in x.split(',')],
     'date': lambda x, y: get_date(x),
+    'last_modified_date': lambda x, y: get_date(x),
     'status': lambda x, y: x.strip(),
     'category': Category,
     'author': Author,
@@ -528,7 +529,8 @@ def path_metadata(full_path, source_path, settings=None):
     if settings:
         if settings.get('DEFAULT_DATE', None) == 'fs':
             metadata['date'] = datetime.datetime.fromtimestamp(
-                os.stat(full_path).st_ctime)
+        metadata['last_modified_date'] = datetime.datetime.fromtimestamp(
+                os.stat(full_path).st_mtime)
         metadata.update(settings.get('EXTRA_PATH_METADATA', {}).get(
             source_path, {}))
     return metadata
